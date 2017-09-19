@@ -21,6 +21,28 @@ int unattack(int x, int y) {
 	return 1;
 }
 
+int trial_oneanswer(int i, int n) {
+	int j, ret = 0;
+	if(i >= n) {
+		return 1;
+	}
+	for(j = 0; j < n; ++j) {
+		if(unattack(i, j)) {
+			line[i] = j;
+			col[j] = 1;
+			b1[j-i+N] = 1;
+			b2[j+i] = 1;
+			ret = trial_oneanswer(i+1, n);
+			if(ret == 1) 
+				break;
+			col[j] = 0;
+			b1[j-i+N] = 0;
+			b2[j+i] = 0;
+		}
+	}
+	return ret;
+}
+
 int k = 0;
 
 void trial(int i, int n) {
@@ -51,9 +73,18 @@ void trial(int i, int n) {
 }
 
 int main(void) {
-	int i;
+	//int i;
 	int n = 8;
 
 	trial(0, n);
+	/*i = trial_oneanswer(0, n);
+	if(i > 0) {
+		for(i = 0; i < n; ++i) {
+			printf("(%d, %d)", i, line[i]);
+		}
+		printf("\n");
+	}
+	else
+		printf("no answer\n");*/
 	return 0;
 }
