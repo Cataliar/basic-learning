@@ -1,0 +1,36 @@
+//可参考Github入门指南：https://jingyan.baidu.com/article/bea41d437e4fbab4c51be6cf.html
+
+sudo apt-get install git
+
+git config --global user.name "Cataliar"
+git config --global user.email "dingji1990@qq.com"
+
+创建文件夹，作为git工作目录
+
+git init //初始化
+
+git status  //查看repository(仓库)状态
+
+git add filename  //添加文件
+git add .  //添加当前目录所有文件
+
+git commit -m 'commit information'  //提交并添加描述信息
+
+git revert HEAD  //还原之前的提交
+
+git branch testbranch  //创建名为testbranch的分支
+git checkout testbranch  //切换到分支testbranch
+
+git checkout master  //切换到分支master
+git merge testbranch  //将testbranch分支合并到master分支
+
+
+//同步远程仓库
+//先在网页上创建仓库，名为basic-learning
+git pull basic-learning master
+git push -u basic-learning master  //可能要输入github用户名和密码
+
+//另一台主机上的同步
+git pull <remote> <branch>
+git branch --set-upstream-to=<remote>/<branch> master  //将本地分支和远程分支进行关联
+git push -u <remote> master
